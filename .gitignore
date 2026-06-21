@@ -1,0 +1,11 @@
+node_modules/
+.env
+
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfstate
+*.tfstate.backup
+
+terrasecure_db.json
