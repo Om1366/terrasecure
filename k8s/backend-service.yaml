@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: terrasecure-service
+
+spec:
+  selector:
+    app: terrasecure-backend
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5001
+
+  type: NodePort
