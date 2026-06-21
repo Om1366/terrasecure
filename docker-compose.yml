@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+
+  mongodb:
+    image: mongo:latest
+    container_name: terrasecure-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: terrasecure-backend
+    ports:
+      - "5001:5001"
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/terrasecure
+      JWT_SECRET: terrasecure_super_secret_key_123
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    container_name: terrasecure-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
